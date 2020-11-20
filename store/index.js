@@ -1,5 +1,5 @@
 export const state = () => ({
-  user: JSON.parse(window.localStorage.getItem('gotrue.user') || nulll)
+  user: JSON.parse(window.localStorage.getItem('gotrue.user') || null)
 });
 
 export const mutations = {

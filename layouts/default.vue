@@ -42,9 +42,9 @@
       </v-btn>
     </v-app-bar>
     <v-content>
-        <pre>$auth.loggedIn: {{ $auth.loggedIn || false }}</pre>
-        <pre>$auth.user: {{ $auth.user || false }}</pre>
-        <pre>state user: {{ user || false }}</pre>
+      <pre>$auth.loggedIn: {{ $auth.loggedIn || false }}</pre>
+      <pre>$auth.user: {{ $auth.user || false }}</pre>
+      <pre>state user: {{ user || false }}</pre>
       <v-container>
         <nuxt />
       </v-container>
@@ -94,16 +94,22 @@ export default {
       title: 'Vuetify.js',
     }
   },
-  mounted() {
+  created() {
+    // console.log(this)
     this.isLoggedIn()
+  },
+  mounted() {
+    // this.isLoggedIn()
   },
   computed: mapState({
     user: (state) => state.user,
   }),
   methods: {
     isLoggedIn() {
-      this.$auth.setUser(this.user)
-      this.$auth.setUserToken(this.user.token.access_token)
+      if (this.user && this.user.token.access_token) {
+        this.$auth.setUser(this.user)
+        this.$auth.setUserToken(this.user.token.access_token)
+      }
       console.log('yoyoyo')
     },
   },

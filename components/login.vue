@@ -33,106 +33,60 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import netlifyIdentity from 'netlify-identity-widget'
-import GoTrue from 'gotrue-js';
-import { mapActions, mapState } from 'vuex'
+// import Logo from '~/components/Logo.vue'
+// import netlifyIdentity from 'netlify-identity-widget'
+// import { mapActions, mapState } from 'vuex'
 
-let gotrue = new GoTrue({
-  APIUrl: 'https://nuxt-twa-netlify.netlify.app/.netlify/identity',
-  audience: '',
-  setCookie: false,
-});
-
-netlifyIdentity.init()
-netlifyIdentity.on('init', user => console.log('init', user));
-netlifyIdentity.on('login', user => console.log('login', user));
-netlifyIdentity.on('logout', () => console.log('Logged out'));
-netlifyIdentity.on('error', err => console.error('Error', err));
-netlifyIdentity.on('open', () => console.log('Widget opened'));
-netlifyIdentity.on('close', () => console.log('Widget closed'));
-
+// netlifyIdentity.init({
+//   namePlaceholder: 'username',
+// })
+// netlifyIdentity.on('init', (user) => console.log('init', user))
+// netlifyIdentity.on('login', (user) => console.log('login', user))
+// netlifyIdentity.on('logout', () => console.log('Logged out'))
+// netlifyIdentity.on('error', (err) => console.error('Error', err))
+// netlifyIdentity.on('open', () => console.log('Widget opened'))
+// netlifyIdentity.on('close', () => console.log('Widget closed'))
 
 export default {
-  components: {
-    Logo,
-  },
-  computed: mapState({
-    isLoggedIn: (state) => state.user,
-  }),
-  async beforeMount() {
-    let user = await netlifyIdentity.currentUser()
-    if (user && user.token.access_token) {
-      console.log('user== ', user.token.access_token)
-      this.setUser(user)
-    }
-  },
-  methods: {
-    ...mapActions({
-      setUser: 'setUser',
-    }),
-    // circumvent() {
-    //   window.localStorage.setItem('user', true)
-    //   location.reload(true)
-    // },
-    triggerNetlifyIdentityAction(action) {
-      if (action == 'login' || action == 'signup') {
-        console.log('login')
-        netlifyIdentity.open(action)
+//   components: {
+//     Logo,
+//   },
+//   computed: {
+//     ...mapState({
+//       user: (state) => state.auth.user,
+//       isLoggedIn: (state) => state.auth.loggedIn,
+//     }),
+//     // isLoggedIn() {
+//     //     return this.$auth.loggedIn
+//     // }
+//   },
+//   async mounted() {
+//     let user = await netlifyIdentity.currentUser()
+//     if (user && user.token.access_token) {
+//       console.log('user== ', user.token.access_token)
+//       this.setUser(user)
+//     }
+//   },
+//   methods: {
+//     ...mapActions({
+//       setUser: 'setUser',
+//     }),
+//     triggerNetlifyIdentityAction(action) {
+//       // login
+//       if (action == 'login') {
+//         netlifyIdentity.open(action)
+//         netlifyIdentity.on(action, (user) => {
+//           this.setUser(user)
+//           netlifyIdentity.close()
+//         })
 
-        netlifyIdentity.on(action, (user) => {
-          this.setUser(user)
-          netlifyIdentity.close()
-        console.log('----')
-        })
-
-      } else if (action == 'logout') {
-        this.setUser(null)
-        netlifyIdentity.logout()
-        this.$router.push('/')
-      }
-    },
-  },
+//         // login
+//       } else if (action == 'logout') {
+//         this.setUser(null)
+//         netlifyIdentity.logout()
+//         // this.$router.push('/')
+//       }
+//     },
+//   }
 }
 </script>
-
-<style>
-/* .container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-  line-height: 1;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.greetings {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-weight: 400;
-  margin: 1.5rem 0;
-}
-
-.links {
-  padding-top: 15px;
-} */
-</style>

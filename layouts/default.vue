@@ -37,14 +37,25 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <!-- <div>logginedin {{ isLoggedIn }}</div> -->
+      <v-btn
+        v-if="isLoggedIn"
+        v-on:click="triggerNetlifyIdentityAction('logout')"
+      >
+        Logout
+      </v-btn>
+      <v-btn v-else v-on:click="triggerNetlifyIdentityAction('login')">
+        Login
+      </v-btn>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
     <v-content>
+      <!-- / -->
       <pre>$auth.loggedIn: {{ $auth.loggedIn || false }}</pre>
       <pre>$auth.user: {{ $auth.user || false }}</pre>
-      <pre>state user: {{ user || false }}</pre>
+      <!-- / -->
       <v-container>
         <nuxt />
       </v-container>
@@ -68,7 +79,18 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+
+import netlifyIdentity from 'netlify-identity-widget'
+netlifyIdentity.init({
+  namePlaceholder: 'username',
+})
+// netlifyIdentity.on('init', (user) => console.log('init', user))
+// netlifyIdentity.on('login', (user) => console.log('login', user))
+// netlifyIdentity.on('logout', () => console.log('Logged out'))
+// netlifyIdentity.on('error', (err) => console.error('Error', err))
+// netlifyIdentity.on('open', () => console.log('Widget opened'))
+// netlifyIdentity.on('close', () => console.log('Widget closed'))
 
 export default {
   data() {
@@ -94,23 +116,47 @@ export default {
       title: 'Vuetify.js',
     }
   },
-  created() {
-    // console.log(this)
-    this.isLoggedIn()
+  async mounted() {
+    let user = await netlifyIdentity.currentUser()
+    console.log("user", user)
+    if (user && user.token.access_token) {
+      console.log('user== ', user.token.access_token)
+      await this.setUser(user)
+    }
+    console.log(netlifyIdentity.gotrue.currentUser())
   },
-  mounted() {
-    // this.isLoggedIn()
-  },
-  computed: mapState({
-    user: (state) => state.user,
-  }),
-  methods: {
+  computed: {
+    ...mapState({
+      user: (state) => state.auth.user || null
+      // isLoggdIn: (state) => state.auth.loggedIn
+    }),
+    user() {
+      return this.$auth.user
+    },
     isLoggedIn() {
-      if (this.user && this.user.token.access_token) {
-        this.$auth.setUser(this.user)
-        this.$auth.setUserToken(this.user.token.access_token)
+      return this.$auth.loggedIn
+    },
+  },
+  methods: {
+    ...mapActions({
+      setUser: 'setUser',
+    }),
+    triggerNetlifyIdentityAction(action) {
+      // login
+      if (action == 'login') {
+        netlifyIdentity.open(action)
+        netlifyIdentity.on(action, (user) => {
+          this.setUser(user)
+          netlifyIdentity.close()
+        })
+
+        // logout
+      } else if (action == 'logout') {
+        // this.setUser()
+        this.$auth.logout()
+        netlifyIdentity.logout()
+        // this.$router.push('/')
       }
-      console.log('yoyoyo')
     },
   },
 }

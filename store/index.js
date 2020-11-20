@@ -1,5 +1,5 @@
 export const state = () => ({
-  user: JSON.parse(window.localStorage.getItem('gotrue.user'))
+  user: JSON.parse(window.localStorage.getItem('gotrue.user') || nulll)
 });
 
 export const mutations = {
@@ -16,7 +16,9 @@ export const mutations = {
 };
 
 export const actions = {
-  setUser: ({ commit }, payload) => {
+  setUser: ({
+    commit
+  }, payload) => {
     commit('SET_USER', payload)
   }
 };

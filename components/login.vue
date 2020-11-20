@@ -4,12 +4,9 @@
       <!-- <logo /> -->
       <h1 class="title">nuxt-netlify-identity</h1>
       <h2 class="subtitle">My polished Nuxt.js project</h2>
+
       <p v-if="!isLoggedIn">Log in with depi@mail-maker.net : password</p>
-      <p>
-        You should only be able to view the Protected Page after logging in. You
-        should be redirected back home if you try to go to the Protected Page
-        and you are not logged in.
-      </p>
+
       <h3 v-if="isLoggedIn" class="greetings">
         Hello, authorized user! Go to your
         <nuxt-link to="/protected">protected page</nuxt-link>.
@@ -87,7 +84,7 @@ export default {
 </script>
 
 <style>
-.container {
+/* .container {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
@@ -124,5 +121,5 @@ export default {
 
 .links {
   padding-top: 15px;
-}
+} */
 </style>

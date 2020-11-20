@@ -44,7 +44,7 @@
     <v-content>
         <pre>$auth.loggedIn: {{ $auth.loggedIn || false }}</pre>
         <pre>$auth.user: {{ $auth.user || false }}</pre>
-        <pre>Identity User: {{ user || false }}</pre>
+        <pre>state user: {{ user || false }}</pre>
       <v-container>
         <nuxt />
       </v-container>

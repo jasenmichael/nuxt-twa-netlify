@@ -43,6 +43,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
+    '@nuxtjs/auth'
   ],
   axios: {},
   vuetify: {

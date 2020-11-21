@@ -81,12 +81,14 @@
 <script>
 import netlifyIdentity from 'netlify-identity-widget'
 
-// netlifyIdentity.on('init', (user) => console.log('init', user))
-// netlifyIdentity.on('login', (user) => console.log('login', user))
-// netlifyIdentity.on('logout', () => console.log('Logged out'))
-// netlifyIdentity.on('error', (err) => console.error('Error', err))
-// netlifyIdentity.on('open', () => console.log('Widget opened'))
-// netlifyIdentity.on('close', () => console.log('Widget closed'))
+netlifyIdentity.init()
+
+netlifyIdentity.on('init', (user) => console.log('init', user))
+netlifyIdentity.on('login', (user) => console.log('login', user))
+netlifyIdentity.on('logout', () => console.log('Logged out'))
+netlifyIdentity.on('error', (err) => console.error('Error', err))
+netlifyIdentity.on('open', () => console.log('Widget opened'))
+netlifyIdentity.on('close', () => console.log('Widget closed'))
 
 export default {
   data() {
@@ -112,11 +114,11 @@ export default {
       title: 'Vuetify.js',
     }
   },
-  async beforeMount() {
-    // init identity widget
-    netlifyIdentity.init()
-    console.log('init identiy')
-  },
+  // async beforeMount() {
+  //   // init identity widget
+  //   netlifyIdentity.init()
+  //   console.log('init identiy')
+  // },
   async mounted() {
     // check if already loggedin
     let currentUser = await netlifyIdentity.currentUser()

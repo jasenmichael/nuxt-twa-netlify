@@ -52,13 +52,16 @@
       </v-btn>
     </v-app-bar>
     <v-content>
-      <!-- / -->
-      <!-- / -->
       <v-container>
+      <!-- / -->
+      <pre>$auth.loggedIn: {{ $auth.loggedIn || false }}</pre>
+      <!-- <pre>$auth.user: {{ $auth.user || false }}</pre> -->
+      <pre>$auth.user.email: {{ $auth.user.email || false }}</pre>
+      <!-- <pre>$auth.user.app_metadata.roles: {{ $auth.user.app_metadata.roles || false }}</pre> -->
+      <!-- <pre>$auth.user.user_metadata.full_name: {{ $auth.user.user_metadata.full_name || false }}</pre> -->
+      <!-- / -->
         <nuxt />
       </v-container>
-      <pre>$auth.loggedIn: {{ $auth.loggedIn || false }}</pre>
-      <pre>$auth.user: {{ $auth.user || false }}</pre>
     </v-content>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
@@ -148,6 +151,7 @@ export default {
             this.$auth.setUserToken(currentUser.token.access_token)
             this.$auth.setUser(currentUser)
             // close identity widget
+
             netlifyIdentity.close()
           }
         })

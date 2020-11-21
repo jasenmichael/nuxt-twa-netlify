@@ -158,6 +158,7 @@ export default {
 
             netlifyIdentity.close()
             // this.$redirct('/')
+            this.$forceUpdate()
           }
         })
         // logout button clicked, logout

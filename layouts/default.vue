@@ -81,17 +81,12 @@
 <script>
 import netlifyIdentity from 'netlify-identity-widget'
 
-netlifyIdentity.init()
-
-netlifyIdentity.on('init', (user) => console.log('init', user))
-netlifyIdentity.on('login', (user) => {
-  console.log('Login', user)
-  netlifyIdentity.close()
-})
-netlifyIdentity.on('logout', () => console.log('Logged out'))
-netlifyIdentity.on('error', (err) => console.error('Error', err))
-netlifyIdentity.on('open', () => console.log('Widget opened'))
-netlifyIdentity.on('close', () => console.log('Widget closed'))
+// netlifyIdentity.on('init', (user) => console.log('init', user))
+// netlifyIdentity.on('login', (user) => console.log('Login', user))
+// netlifyIdentity.on('logout', () => console.log('Logged out'))
+// netlifyIdentity.on('error', (err) => console.error('Error', err))
+// netlifyIdentity.on('open', () => console.log('Widget opened'))
+// netlifyIdentity.on('close', () => console.log('Widget closed'))
 
 export default {
   data() {
@@ -117,16 +112,15 @@ export default {
       title: 'Vuetify.js',
     }
   },
-  // async beforeMount() {
-  //   // init identity widget
-  //   netlifyIdentity.init()
-  //   console.log('init identiy')
-  // },
+  async beforeMount() {
+    // init identity widget
+    netlifyIdentity.init()
+  },
   async mounted() {
     // check if already loggedin
     let currentUser = await netlifyIdentity.currentUser()
     if (currentUser && currentUser.token.access_token) {
-      // if logged in, set nuxt auth user and token
+      // if logged in, set nuxt auth user and token, must set token before user!!
       this.$auth.setUserToken(currentUser.token.access_token)
       this.$auth.setUser(currentUser)
     }
@@ -143,17 +137,25 @@ export default {
         // open identity widget
         netlifyIdentity.open(action)
         // now logged in
-        netlifyIdentity.on(action, (user) => {
-          // set nuxt auth user
-          this.$auth.setUser(user)
+        netlifyIdentity.on('login', async (user) => {
+          // set nuxt auth user and token, must set token before user!!
+          // this.$auth.setUserToken(user.token.access_token)
+          // this.$auth.setUser(user)
+
+          let currentUser = await netlifyIdentity.currentUser()
+          if (currentUser && currentUser.token.access_token) {
+            // if logged in, set nuxt auth user and token, must set token before user!!
+            this.$auth.setUserToken(currentUser.token.access_token)
+            this.$auth.setUser(currentUser)
+          }
+
           // close identity widget
           netlifyIdentity.close()
         })
         // logout button clicked, logout
       } else if (action == 'logout') {
-        // logout netlify identity
+        // logout netlify identity and nuxt auth
         netlifyIdentity.logout()
-        // logout nuxt auth
         this.$auth.logout()
       }
     },

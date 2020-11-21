@@ -91,16 +91,11 @@ import netlifyIdentity from 'netlify-identity-widget'
 // netlifyIdentity.on('open', () => console.log('Widget opened'))
 netlifyIdentity.on('close', () => {
   console.log('Widget closed')
-  // if (localStorage.hasOwnProperty('nf_jwt')) {
-    console.log(localStorage.getItem('auth._token.local') == 'false')
   if (
     localStorage.hasOwnProperty('gotrue.user') &&
     localStorage.getItem('auth._token.local') == 'false'
   ) {
-    console.log('has nf_jtw, reloading page')
-    setTimeout(() => {
-      location.reload()
-    }, 1000)
+    location.reload()
   }
 })
 

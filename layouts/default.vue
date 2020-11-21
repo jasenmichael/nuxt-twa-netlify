@@ -89,7 +89,7 @@ import netlifyIdentity from 'netlify-identity-widget'
 // netlifyIdentity.on('logout', () => console.log('Logged out'))
 // netlifyIdentity.on('error', (err) => console.error('Error', err))
 // netlifyIdentity.on('open', () => console.log('Widget opened'))
-// netlifyIdentity.on('close', () => console.log('Widget closed'))
+netlifyIdentity.on('close', () => console.log('Widget closed'))
 
 export default {
   data() {

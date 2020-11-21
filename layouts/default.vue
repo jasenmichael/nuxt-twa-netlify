@@ -84,7 +84,10 @@ import netlifyIdentity from 'netlify-identity-widget'
 netlifyIdentity.init()
 
 netlifyIdentity.on('init', (user) => console.log('init', user))
-netlifyIdentity.on('login', (user) => console.log('login', user))
+netlifyIdentity.on('login', (user) => {
+  console.log('Login', user)
+  netlifyIdentity.close()
+})
 netlifyIdentity.on('logout', () => console.log('Logged out'))
 netlifyIdentity.on('error', (err) => console.error('Error', err))
 netlifyIdentity.on('open', () => console.log('Widget opened'))

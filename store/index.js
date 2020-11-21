@@ -1,34 +1,44 @@
-export const state = () => ({
-//   user: JSON.parse(window.localStorage.getItem('gotrue.user') || null),
-//   auth: null
-})
-
-export const mutations = {
-  SET_USER(user) {
-    if (!user) {
-    //   state.user = null;
-    //   window.localStorage.removeItem('user')
-      this.$auth.logout()
-      return;
-    }
-    // let theUser = JSON.stringify(user);
-    // state.user = user;
-    // window.localStorage.setItem('user', theUser);
-    let theUser = JSON.parse(window.localStorage.getItem('gotrue.user') || null)
-    console.log('theuser', theUser)
-    this.$auth.setUser(theUser)
-    this.$auth.setUserToken(theUser.token.access_token)
-    // this.$auth.setUserToken(this.user.token.access_token)
-  }
-};
-
-export const actions = {
-  setUser: ({
-    commit
-  }, payload) => {
-    commit('SET_USER', payload)
-  }
-}
 
 
-console.log('do stuff in store init...')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const state = () => ({
+// //   user: {}
+// })
+
+// export const mutations = {
+//   SET_USER(state, payload) {
+//     console.log('SET_USER mutation payload', payload)
+//     if (payload.email && payload.token) {
+//       state.user = payload
+//       this.$auth.setUserToken(state.user.token.access_token)
+//       this.$auth.setUser(payload)
+//       return
+//     }
+//     state.user = null
+//     this.$auth.logout()
+//   }
+// }
+
+// export const actions = {
+//   setUser: ({
+//     commit
+//   }, payload) => {
+//     console.log('setPayload action payload', payload)
+//     payload === 'login' ?
+//       commit('SET_USER', JSON.parse(window.localStorage.getItem('gotrue.user') || null)) :
+//       commit('SET_USER', {})
+//   }
+// }

@@ -37,7 +37,7 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <!-- <div>logginedin {{ isLoggedIn }}</div> -->
+
       <v-btn
         v-if="isLoggedIn"
         v-on:click="triggerNetlifyIdentityAction('logout')"
@@ -54,6 +54,7 @@
     <v-content>
       <!-- / -->
       <pre>$auth.loggedIn: {{ $auth.loggedIn || false }}</pre>
+      <!-- <pre>$state.user: {{ user }}</pre> -->
       <pre>$auth.user: {{ $auth.user || false }}</pre>
       <!-- / -->
       <v-container>
@@ -79,12 +80,10 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+// import { mapState, mapActions } from 'vuex'
 
 import netlifyIdentity from 'netlify-identity-widget'
-netlifyIdentity.init({
-  namePlaceholder: 'username',
-})
+
 // netlifyIdentity.on('init', (user) => console.log('init', user))
 // netlifyIdentity.on('login', (user) => console.log('login', user))
 // netlifyIdentity.on('logout', () => console.log('Logged out'))
@@ -116,46 +115,50 @@ export default {
       title: 'Vuetify.js',
     }
   },
+  async beforeMount() {
+    netlifyIdentity.init({
+      namePlaceholder: 'username',
+    })
+    console.log('init identiy')
+  },
   async mounted() {
-    let user = await netlifyIdentity.currentUser()
-    console.log("user", user)
-    if (user && user.token.access_token) {
-      console.log('user== ', user.token.access_token)
-      await this.setUser(user)
+    let currentUser = await netlifyIdentity.currentUser()
+    if (currentUser && currentUser.token.access_token) {
+      this.$auth.setUserToken(currentUser.token.access_token)
+      this.$auth.setUser(currentUser)
     }
-    console.log(netlifyIdentity.gotrue.currentUser())
   },
   computed: {
-    ...mapState({
-      user: (state) => state.auth.user || null
-      // isLoggdIn: (state) => state.auth.loggedIn
-    }),
-    user() {
-      return this.$auth.user
-    },
+    // ...mapState(['user']),
+    // user() {
+    //   return this.$store.state.user
+    // },
     isLoggedIn() {
       return this.$auth.loggedIn
     },
   },
   methods: {
-    ...mapActions({
-      setUser: 'setUser',
-    }),
+    // ...mapActions({
+    //   setUser: 'setUser',
+    // }),
     triggerNetlifyIdentityAction(action) {
       // login
       if (action == 'login') {
         netlifyIdentity.open(action)
         netlifyIdentity.on(action, (user) => {
-          this.setUser(user)
+          // this.setUser('login')
+          this.$auth.setUser(user)
           netlifyIdentity.close()
         })
-
         // logout
       } else if (action == 'logout') {
         // this.setUser()
         this.$auth.logout()
+        // this.setUser('logout')
         netlifyIdentity.logout()
         // this.$router.push('/')
+      } else if (action == 'init') {
+        console.log('init identity widget')
       }
     },
   },

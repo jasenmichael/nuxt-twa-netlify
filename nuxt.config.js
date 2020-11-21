@@ -45,6 +45,21 @@ export default {
     '@nuxtjs/dotenv',
     '@nuxtjs/auth'
   ],
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: false,
+          logout: false,
+          user: false
+        },
+        tokenRequired: true,
+        tokenType: 'bearer',
+        globalToken: true,
+        autoFetchUser: false
+      }
+    }
+  },
   axios: {},
   vuetify: {
     customVariables: ['~/assets/variables.scss'],

@@ -145,8 +145,8 @@ export default {
           let currentUser = await netlifyIdentity.currentUser()
           if (currentUser && currentUser.token.access_token) {
             // if logged in, set nuxt auth user and token, must set token before user!!
-            await this.$auth.setUserToken(currentUser.token.access_token)
-            await this.$auth.setUser(currentUser)
+            this.$auth.setUserToken(currentUser.token.access_token)
+            this.$auth.setUser(currentUser)
             // close identity widget
             netlifyIdentity.close()
           }

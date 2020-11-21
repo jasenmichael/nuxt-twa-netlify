@@ -94,7 +94,9 @@ netlifyIdentity.on('close', () => {
   // if (localStorage.hasOwnProperty('nf_jwt')) {
   if (localStorage.hasOwnProperty('gotrue.user')) {
     console.log('has nf_jtw, reloading page')
-    location.reload()
+    setTimeout(() => {
+      location.reload()
+    }, 1000)
   }
 })
 

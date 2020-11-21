@@ -94,7 +94,7 @@ netlifyIdentity.on('close', () => {
   // if (localStorage.hasOwnProperty('nf_jwt')) {
   if (
     localStorage.hasOwnProperty('gotrue.user') &&
-    !localStorage.hasOwnProperty('auth._token.local')
+    localStorage.getItem('auth._token.local') === false
   ) {
     console.log('has nf_jtw, reloading page')
     setTimeout(() => {

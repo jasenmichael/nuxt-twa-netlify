@@ -54,9 +54,9 @@
     <v-content>
       <v-container>
       <!-- / -->
-      <pre>$auth.loggedIn: {{ $auth.loggedIn || false }}</pre>
+      <pre>$auth.loggedIn: {{ isLoggedIn || false }}</pre>
+      <pre>$auth.user.email: {{ user.email }}</pre>
       <!-- <pre>$auth.user: {{ $auth.user || false }}</pre> -->
-      <pre>$auth.user.email: {{ $auth.user.email || false }}</pre>
       <!-- <pre>$auth.user.app_metadata.roles: {{ $auth.user.app_metadata.roles || false }}</pre> -->
       <!-- <pre>$auth.user.user_metadata.full_name: {{ $auth.user.user_metadata.full_name || false }}</pre> -->
       <!-- / -->
@@ -120,6 +120,7 @@ export default {
     netlifyIdentity.init()
   },
   async mounted() {
+    // console.log(this.$nuxt.redirect)
     // check if already loggedin
     let currentUser = await netlifyIdentity.currentUser()
     if (currentUser && currentUser.token.access_token) {
@@ -132,6 +133,9 @@ export default {
     isLoggedIn() {
       return this.$auth.loggedIn
     },
+    user(){
+      return this.$auth.user || false
+    }
   },
   methods: {
     triggerNetlifyIdentityAction(action) {
@@ -153,6 +157,7 @@ export default {
             // close identity widget
 
             netlifyIdentity.close()
+            this.$router.push('/')
           }
         })
         // logout button clicked, logout

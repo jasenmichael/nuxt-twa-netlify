@@ -53,13 +53,13 @@
     </v-app-bar>
     <v-content>
       <v-container>
-      <!-- / -->
-      <pre>$auth.loggedIn: {{ isLoggedIn || false }}</pre>
-      <pre>$auth.user.email: {{ user.email }}</pre>
-      <!-- <pre>$auth.user: {{ $auth.user || false }}</pre> -->
-      <!-- <pre>$auth.user.app_metadata.roles: {{ $auth.user.app_metadata.roles || false }}</pre> -->
-      <!-- <pre>$auth.user.user_metadata.full_name: {{ $auth.user.user_metadata.full_name || false }}</pre> -->
-      <!-- / -->
+        <!-- / -->
+        <pre>$auth.loggedIn: {{ isLoggedIn || false }}</pre>
+        <pre>$auth.user.email: {{ user.email }}</pre>
+        <!-- <pre>$auth.user: {{ $auth.user || false }}</pre> -->
+        <!-- <pre>$auth.user.app_metadata.roles: {{ $auth.user.app_metadata.roles || false }}</pre> -->
+        <!-- <pre>$auth.user.user_metadata.full_name: {{ $auth.user.user_metadata.full_name || false }}</pre> -->
+        <!-- / -->
         <nuxt />
       </v-container>
     </v-content>
@@ -89,7 +89,14 @@ import netlifyIdentity from 'netlify-identity-widget'
 // netlifyIdentity.on('logout', () => console.log('Logged out'))
 // netlifyIdentity.on('error', (err) => console.error('Error', err))
 // netlifyIdentity.on('open', () => console.log('Widget opened'))
-netlifyIdentity.on('close', () => console.log('Widget closed'))
+netlifyIdentity.on('close', () => {
+  console.log('Widget closed')
+  // if (localStorage.hasOwnProperty('nf_jwt')) {
+  if (localStorage.hasOwnProperty('gotrue.user')) {
+    console.log('has nf_jtw, reloading page')
+    location.reload()
+  }
+})
 
 export default {
   data() {
@@ -133,9 +140,9 @@ export default {
     isLoggedIn() {
       return this.$auth.loggedIn
     },
-    user(){
+    user() {
       return this.$auth.user || false
-    }
+    },
   },
   methods: {
     triggerNetlifyIdentityAction(action) {
@@ -157,8 +164,6 @@ export default {
             // close identity widget
 
             netlifyIdentity.close()
-            // this.$redirct('/')
-            this.$forceUpdate()
           }
         })
         // logout button clicked, logout

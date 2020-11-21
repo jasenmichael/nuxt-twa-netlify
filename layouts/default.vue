@@ -92,10 +92,13 @@ import netlifyIdentity from 'netlify-identity-widget'
 netlifyIdentity.on('close', () => {
   console.log('Widget closed')
   // if (localStorage.hasOwnProperty('nf_jwt')) {
-  if (localStorage.hasOwnProperty('gotrue.user')) {
+  if (
+    localStorage.hasOwnProperty('gotrue.user') &&
+    !localStorage.hasOwnProperty('auth._token.local')
+  ) {
     console.log('has nf_jtw, reloading page')
     setTimeout(() => {
-      location.reload()
+      // location.reload()
     }, 1000)
   }
 })
@@ -140,10 +143,10 @@ export default {
   },
   computed: {
     isLoggedIn() {
-      return this.$auth.loggedIn
+      return this.$store.$auth.loggedIn
     },
     user() {
-      return this.$auth.user || false
+      return this.$store.$auth.user || false
     },
   },
   methods: {

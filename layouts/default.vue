@@ -157,7 +157,7 @@ export default {
             // close identity widget
 
             netlifyIdentity.close()
-            this.$router.push('/')
+            // this.$redirct('/')
           }
         })
         // logout button clicked, logout

@@ -53,13 +53,12 @@
     </v-app-bar>
     <v-content>
       <!-- / -->
-      <pre>$auth.loggedIn: {{ $auth.loggedIn || false }}</pre>
-      <!-- <pre>$state.user: {{ user }}</pre> -->
-      <pre>$auth.user: {{ $auth.user || false }}</pre>
       <!-- / -->
       <v-container>
         <nuxt />
       </v-container>
+      <pre>$auth.loggedIn: {{ $auth.loggedIn || false }}</pre>
+      <pre>$auth.user: {{ $auth.user || false }}</pre>
     </v-content>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
@@ -73,15 +72,13 @@
     </v-navigation-drawer>
     <v-footer :fixed="fixed" app>
       <div>
-        <!-- <span>&copy; {{ new Date().getFullYear() }}</span> -->
+        <span>&copy; {{ new Date().getFullYear() }}</span>
       </div>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-// import { mapState, mapActions } from 'vuex'
-
 import netlifyIdentity from 'netlify-identity-widget'
 
 // netlifyIdentity.on('init', (user) => console.log('init', user))
@@ -116,49 +113,43 @@ export default {
     }
   },
   async beforeMount() {
-    netlifyIdentity.init({
-      namePlaceholder: 'username',
-    })
+    // init identity widget
+    netlifyIdentity.init()
     console.log('init identiy')
   },
   async mounted() {
+    // check if already loggedin
     let currentUser = await netlifyIdentity.currentUser()
     if (currentUser && currentUser.token.access_token) {
+      // if logged in, set nuxt auth user and token
       this.$auth.setUserToken(currentUser.token.access_token)
       this.$auth.setUser(currentUser)
     }
   },
   computed: {
-    // ...mapState(['user']),
-    // user() {
-    //   return this.$store.state.user
-    // },
     isLoggedIn() {
       return this.$auth.loggedIn
     },
   },
   methods: {
-    // ...mapActions({
-    //   setUser: 'setUser',
-    // }),
     triggerNetlifyIdentityAction(action) {
-      // login
+      // login button clicked
       if (action == 'login') {
+        // open identity widget
         netlifyIdentity.open(action)
+        // now logged in
         netlifyIdentity.on(action, (user) => {
-          // this.setUser('login')
+          // set nuxt auth user
           this.$auth.setUser(user)
+          // close identity widget
           netlifyIdentity.close()
         })
-        // logout
+        // logout button clicked, logout
       } else if (action == 'logout') {
-        // this.setUser()
-        this.$auth.logout()
-        // this.setUser('logout')
+        // logout netlify identity
         netlifyIdentity.logout()
-        // this.$router.push('/')
-      } else if (action == 'init') {
-        console.log('init identity widget')
+        // logout nuxt auth
+        this.$auth.logout()
       }
     },
   },

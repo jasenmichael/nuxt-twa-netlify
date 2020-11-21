@@ -33,7 +33,10 @@ export default {
 
   css: [],
 
-  plugins: [],
+  plugins: [{
+    src: '~/plugins/netlifyIdentity',
+    ssr: false
+  }],
 
   buildModules: [
     '@nuxtjs/vuetify',

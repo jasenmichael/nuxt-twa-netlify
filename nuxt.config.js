@@ -2,8 +2,10 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   target: 'static',
-  ssr: false,
-
+  ssr: true,
+  server: {
+    host: '0.0.0.0'
+  },
   head: {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
@@ -37,14 +39,73 @@ export default {
 
   buildModules: [
     '@nuxtjs/vuetify',
+    'nuxt-purgecss',
+    // '@nuxtjs/google-fonts'
+
   ],
+  // purgeCSS: {
+  //   enabled: ({
+  //     isDev,
+  //     isClient
+  //   }) => (!isDev && isClient), // or `false` when in dev/debug mode
+  // },
 
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    ['nuxt-twa-module', {
+      /* module options */
+      // https://github.com/voorhoede/nuxt-twa-module#readme
+      defaultUrl: 'https://your-url.com',
+      hostName: 'your-url.com',
+      sha256Fingerprints: ['/* your SHA-256 keys */'],
+      applicationId: 'com.example.example',
+      launcherName: 'Your app name',
+      versionCode: 1,
+      versionName: '1.0',
+      statusBarColor: 'grey',
+      iconPath: '/static/icon.png',
+      distFolder: '.nuxt/dist/client',
+    }],
   ],
+
+  // pwa config
+  pwa: {
+    manifest: {
+      display: 'standalone'
+    }
+  },
+  workbox: {
+    runtimeCaching: [{
+      urlPattern: 'https://fonts.googleapis.com/.*',
+      handler: 'cacheFirst',
+      cacheableResponse: {
+        statuses: [0, 200]
+      }
+    }, {
+      urlPattern: 'https://cdn.jsdelivr.net/.*',
+      handler: 'cacheFirst',
+      cacheableResponse: {
+        statuses: [0, 200]
+      }
+    }]
+  },
+  manifest: {
+    short_name: process.env.npm_package_title,
+    name: process.env.npm_package_title,
+    start_url: '/',
+    // background_color: '#303030',
+    // theme_color: '#263238',
+    // display: 'standalone',
+    lang: 'en',
+    theme_color: 'black',
+    // nativeUi: true
+
+  },
+
+  //auth
   auth: {
     strategies: {
       local: {
@@ -78,7 +139,46 @@ export default {
       }
     }
   },
+  purgeCSS: {
+    mode: 'postcss',
+    // enabled: ({
+    //   isDev,
+    //   isClient
+    // }) => (!isDev && isClient),
+    whitelist: [
+      'container',
+      'row',
+      'spacer',
+      'aos-animate',
+      'col',
+      '[type=button]',
+      'v-application p'
+    ],
+    whitelistPatterns: [
+      /^v-.*/,
+      /^col-.*/,
+      /^theme-.*/,
+      /^rounded-.*/,
+      /^data-aos-.*/,
+      /^(red|grey)--text$/,
+      /^text--darken-[1-4]$/,
+      /^text--lighten-[1-4]$/
+    ],
+    whitelistPatternsChildren: [
+      /^post-content/,
+      /^v-input/,
+      /^swiper-.*/,
+      /^pswp.*/,
+      /^v-text-field.*/,
+      /^v-progress-linear/
+    ]
+  },
   build: {
+    // extractCss: ({
+    //   isDev,
+    //   isClient
+    // }) => (!isDev && isClient), // or `false` when in dev/debug mode
+
     extend(config, ctx) {}
   }
 }

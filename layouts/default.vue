@@ -51,7 +51,7 @@
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-content>
+    <v-main>
       <v-container>
         <!-- / -->
         <pre>$auth.loggedIn: {{ isLoggedIn || false }}</pre>
@@ -62,7 +62,7 @@
         <!-- / -->
         <nuxt />
       </v-container>
-    </v-content>
+    </v-main>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item @click.native="right = !right">
@@ -89,6 +89,7 @@ import netlifyIdentity from 'netlify-identity-widget'
 // netlifyIdentity.on('logout', () => console.log('Logged out'))
 // netlifyIdentity.on('error', (err) => console.error('Error', err))
 // netlifyIdentity.on('open', () => console.log('Widget opened'))
+// netlifyIdentity.refresh().then((jwt)=>console.log(jwt))
 netlifyIdentity.on('close', () => {
   console.log('Widget closed')
   if (

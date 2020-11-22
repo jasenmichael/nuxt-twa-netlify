@@ -34,11 +34,9 @@ steps:
 - [x] add admin/index.html for netlify-identity-widget
 - [x] test login
 - [x] install @nuxtjs/auth
-- [ ] implement netlify-identity-widget into nuxt app (and remove admin/index.html) 
-  
-  - [ ] create login component
-  - [ ] 
-  - [ ] 
-
-install netlifycms
-create site data
+- [x] implement netlify-identity-widget into nuxt app (and remove admin/index.html)
+- [x] generate and run lighthouse test
+- [x] install post-css
+- [ ] lighthouse test
+- [ ] install netlifycms
+- [ ] create site data

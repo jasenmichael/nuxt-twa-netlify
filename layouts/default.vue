@@ -150,6 +150,7 @@ export default {
   },
   async beforeMount() {
     // init identity widget
+    netlifyIdentity.close()
     netlifyIdentity.init()
   },
   async mounted() {
@@ -200,7 +201,7 @@ export default {
           netlifyIdentity.close()
           this.$auth.logout()
         })
-        // or to just logout without openingthe widget
+        // or to just logout without opening the widget
         // netlifyIdentity.logout()
         // this.$auth.logout()
       }

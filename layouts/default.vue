@@ -187,8 +187,8 @@ export default {
           let currentUser = await netlifyIdentity.currentUser()
           if (currentUser && currentUser.token.access_token) {
             // if logged in, set nuxt auth user and token, must set token before user!!
-            this.$auth.setUserToken(currentUser.token.access_token)
-            this.$auth.setUser(currentUser)
+            await this.$auth.setUserToken(currentUser.token.access_token)
+            await this.$auth.setUser(currentUser)
             // close identity widget
             netlifyIdentity.close()
           }
@@ -198,8 +198,8 @@ export default {
         // logout netlify identity and nuxt auth
         netlifyIdentity.open()
         netlifyIdentity.on('logout', () => {
-          netlifyIdentity.close()
           this.$auth.logout()
+          netlifyIdentity.close()
         })
         // or to just logout without opening the widget
         // netlifyIdentity.logout()

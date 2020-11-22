@@ -150,10 +150,10 @@ export default {
   },
   async beforeMount() {
     // init identity widget
-    netlifyIdentity.close()
     netlifyIdentity.init()
   },
   async mounted() {
+    netlifyIdentity.close()
     // console.log(this.$nuxt.redirect)
     // check if already loggedin
     let currentUser = await netlifyIdentity.currentUser()

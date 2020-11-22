@@ -80,13 +80,13 @@ export default {
   workbox: {
     runtimeCaching: [{
       urlPattern: 'https://fonts.googleapis.com/.*',
-      handler: 'cacheFirst',
+      // handler: 'cacheFirst',
       cacheableResponse: {
         statuses: [0, 200]
       }
     }, {
       urlPattern: 'https://cdn.jsdelivr.net/.*',
-      handler: 'cacheFirst',
+      // handler: 'cacheFirst',
       cacheableResponse: {
         statuses: [0, 200]
       }

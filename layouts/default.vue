@@ -25,14 +25,25 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
+      <v-app-bar-nav-icon
+        @click.stop="drawer = !drawer"
+        aria-label="main menu"
+      />
+      <v-btn
+        icon
+        @click.stop="miniVariant = !miniVariant"
+        aria-label="mini menu"
+      >
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
+      <v-btn
+        icon
+        @click.stop="clipped = !clipped"
+        aria-label="toggle clipped menu"
+      >
         <v-icon>mdi-application</v-icon>
       </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
+      <v-btn icon @click.stop="fixed = !fixed" aria-label="toggle fixed menu">
         <v-icon>mdi-minus</v-icon>
       </v-btn>
       <v-toolbar-title v-text="title" />
@@ -41,13 +52,22 @@
       <v-btn
         v-if="isLoggedIn"
         v-on:click="triggerNetlifyIdentityAction('logout')"
+        aria-label="logout"
       >
         Logout
       </v-btn>
-      <v-btn v-else v-on:click="triggerNetlifyIdentityAction('login')">
+      <v-btn
+        v-else
+        v-on:click="triggerNetlifyIdentityAction('login')"
+        aria-label="login"
+      >
         Login
       </v-btn>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+      <v-btn
+        icon
+        @click.stop="rightDrawer = !rightDrawer"
+        aria-label="toggle right drawer"
+      >
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
@@ -173,6 +193,8 @@ export default {
         // logout netlify identity and nuxt auth
         netlifyIdentity.logout()
         this.$auth.logout()
+        // netlifyIdentity.open()
+        // netlifyIdentity.on('logout', netlifyIdentity.close())
       }
     },
   },

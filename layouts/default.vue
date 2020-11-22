@@ -150,9 +150,10 @@ export default {
   },
   async beforeMount() {
     // init identity widget
-    netlifyIdentity.init()
+    await netlifyIdentity.init()
   },
   async mounted() {
+    // close identity widget if used oauth porvider with redirect
     netlifyIdentity.close()
     // console.log(this.$nuxt.redirect)
     // check if already loggedin
@@ -189,7 +190,6 @@ export default {
             this.$auth.setUserToken(currentUser.token.access_token)
             this.$auth.setUser(currentUser)
             // close identity widget
-
             netlifyIdentity.close()
           }
         })

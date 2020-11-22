@@ -110,6 +110,10 @@ import netlifyIdentity from 'netlify-identity-widget'
 // netlifyIdentity.on('error', (err) => console.error('Error', err))
 // netlifyIdentity.on('open', () => console.log('Widget opened'))
 // netlifyIdentity.refresh().then((jwt)=>console.log(jwt))
+// netlifyIdentity.open()
+// netlifyIdentity.close()
+// netlifyIdentity.logout()
+
 netlifyIdentity.on('close', () => {
   console.log('Widget closed')
   if (
@@ -191,10 +195,14 @@ export default {
         // logout button clicked, logout
       } else if (action == 'logout') {
         // logout netlify identity and nuxt auth
-        netlifyIdentity.logout()
-        this.$auth.logout()
-        // netlifyIdentity.open()
-        // netlifyIdentity.on('logout', netlifyIdentity.close())
+        netlifyIdentity.open()
+        netlifyIdentity.on('logout', () => {
+          netlifyIdentity.close()
+          this.$auth.logout()
+        })
+        // or to just logout without openingthe widget
+        // netlifyIdentity.logout()
+        // this.$auth.logout()
       }
     },
   },

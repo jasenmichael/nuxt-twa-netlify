@@ -153,15 +153,15 @@ export default {
     await netlifyIdentity.init()
   },
   async mounted() {
-    // close identity widget if used oauth porvider with redirect
+    // close identity widget if used oauth provider with calback url
     netlifyIdentity.close()
     // console.log(this.$nuxt.redirect)
     // check if already loggedin
     let currentUser = await netlifyIdentity.currentUser()
     if (currentUser && currentUser.token.access_token) {
       // if logged in, set nuxt auth user and token, must set token before user!!
-      this.$auth.setUserToken(currentUser.token.access_token)
-      this.$auth.setUser(currentUser)
+      await this.$auth.setUser(currentUser)
+      await this.$auth.setUserToken(currentUser.token.access_token)
     }
   },
   computed: {

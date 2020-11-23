@@ -96,13 +96,11 @@ export default {
     short_name: process.env.npm_package_title,
     name: process.env.npm_package_title,
     start_url: '/',
-    // background_color: '#303030',
-    // theme_color: '#263238',
+    background_color: 'grey',
     // display: 'standalone',
     lang: 'en',
     theme_color: 'black',
-    // nativeUi: true
-
+    nativeUi: true
   },
 
   //auth

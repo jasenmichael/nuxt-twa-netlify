@@ -74,8 +74,8 @@
     <v-main>
       <v-container>
         <!-- / -->
-        <pre>$auth.loggedIn: {{ isLoggedIn || false }}</pre>
-        <pre>$auth.user.email: {{ user.email }}</pre>
+        <pre>loggedIn: {{ isLoggedIn || false }}</pre>
+        <pre>email: {{ user.email }}</pre>
         <!-- <pre>$auth.user: {{ $auth.user || false }}</pre> -->
         <!-- <pre>$auth.user.app_metadata.roles: {{ $auth.user.app_metadata.roles || false }}</pre> -->
         <!-- <pre>$auth.user.user_metadata.full_name: {{ $auth.user.user_metadata.full_name || false }}</pre> -->

@@ -114,16 +114,6 @@ import netlifyIdentity from 'netlify-identity-widget'
 // netlifyIdentity.close()
 // netlifyIdentity.logout()
 
-netlifyIdentity.on('close', () => {
-  console.log('Widget closed')
-  if (
-    localStorage.hasOwnProperty('gotrue.user') &&
-    localStorage.getItem('auth._token.local') == 'false'
-  ) {
-    location.reload()
-  }
-})
-
 export default {
   data() {
     return {
@@ -153,6 +143,15 @@ export default {
     await netlifyIdentity.init()
   },
   async mounted() {
+    netlifyIdentity.on('close', () => {
+      console.log('Widget closed')
+      if (
+        localStorage.hasOwnProperty('gotrue.user') &&
+        localStorage.getItem('auth._token.local') == 'false'
+      ) {
+        location.reload()
+      }
+    })
     // close identity widget if used oauth provider with calback url
     netlifyIdentity.close()
     // console.log(this.$nuxt.redirect)

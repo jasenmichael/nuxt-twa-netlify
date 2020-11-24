@@ -58,8 +58,8 @@ export default {
     ['nuxt-twa-module', {
       /* module options */
       // https://github.com/voorhoede/nuxt-twa-module#readme
-      defaultUrl: 'https://your-url.com',
-      hostName: 'your-url.com',
+      defaultUrl: 'https://nuxt-twa-netlify.netlify.app',
+      hostName: 'nuxt-twa-netlify.netlify.app',
       sha256Fingerprints: ['/* your SHA-256 keys */'],
       applicationId: 'com.example.example',
       launcherName: 'Your app name',
@@ -73,34 +73,38 @@ export default {
 
   // pwa config
   pwa: {
+    meta: {
+      /* meta options */
+    },
+    // manifest: {
+    //   display: 'standalone'
+    // },
+    workbox: {
+      cleanupOutdatedCaches: true,
+      runtimeCaching: [{
+        urlPattern: 'https://fonts.googleapis.com/.*',
+        // handler: 'cacheFirst',
+        cacheableResponse: {
+          statuses: [0, 200]
+        }
+      }, {
+        urlPattern: 'https://cdn.jsdelivr.net/.*',
+        // handler: 'cacheFirst',
+        cacheableResponse: {
+          statuses: [0, 200]
+        }
+      }]
+    },
     manifest: {
-      display: 'standalone'
-    }
-  },
-  workbox: {
-    runtimeCaching: [{
-      urlPattern: 'https://fonts.googleapis.com/.*',
-      // handler: 'cacheFirst',
-      cacheableResponse: {
-        statuses: [0, 200]
-      }
-    }, {
-      urlPattern: 'https://cdn.jsdelivr.net/.*',
-      // handler: 'cacheFirst',
-      cacheableResponse: {
-        statuses: [0, 200]
-      }
-    }]
-  },
-  manifest: {
-    short_name: process.env.npm_package_title,
-    name: process.env.npm_package_title,
-    start_url: '/',
-    background_color: 'grey',
-    // display: 'standalone',
-    lang: 'en',
-    theme_color: 'black',
-    nativeUi: true
+      short_name: process.env.npm_package_title,
+      name: process.env.npm_package_title,
+      start_url: '/',
+      background_color: 'grey',
+      display: 'standalone',
+      lang: 'en',
+      theme_color: 'black',
+      nativeUi: true
+    },
   },
 
   //auth

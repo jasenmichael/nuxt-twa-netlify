@@ -53,6 +53,7 @@
         v-if="isLoggedIn"
         v-on:click="triggerNetlifyIdentityAction('logout')"
         aria-label="logout"
+        depressed
       >
         Logout
       </v-btn>
@@ -60,6 +61,7 @@
         v-else
         v-on:click="triggerNetlifyIdentityAction('login')"
         aria-label="login"
+        depressed
       >
         Login
       </v-btn>
@@ -76,6 +78,7 @@
         <!-- / -->
         <pre>loggedIn: {{ isLoggedIn || false }}</pre>
         <pre>email: {{ user.email }}</pre>
+        <!-- <pre>email: {{ $store.$auth }}</pre> -->
         <!-- <pre>$auth.user: {{ $auth.user || false }}</pre> -->
         <!-- <pre>$auth.user.app_metadata.roles: {{ $auth.user.app_metadata.roles || false }}</pre> -->
         <!-- <pre>$auth.user.user_metadata.full_name: {{ $auth.user.user_metadata.full_name || false }}</pre> -->
@@ -168,7 +171,7 @@ export default {
       return this.$store.$auth.loggedIn
     },
     user() {
-      return this.$store.$auth.user || false
+      return this.$auth.user || false
     },
   },
   methods: {
@@ -208,3 +211,18 @@ export default {
   },
 }
 </script>
+
+
+<style >
+a:link,
+a:visited {
+  color: #42A5F5;
+  background-color: transparent;
+  text-decoration: none;
+}
+/* a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+} */
+</style>

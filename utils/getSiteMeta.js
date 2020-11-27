@@ -38,7 +38,7 @@ export default (meta, siteData) => {
       hid: "twitter:card",
       name: "twitter:card",
       content: "summary_large_image"
-      // content: siteData.description
+      // content: "summary"
     },
     {
       hid: "twitter:url",

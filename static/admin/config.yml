@@ -63,6 +63,11 @@ collections:
               - { label: 'Handle', name: 'handle', widget: 'string', required: false }
           # favicon
           - { label: 'Favicon', name: 'favicon', widget: 'image', required: false }
+          - label: "Tags"
+            name: "tags"
+            widget: "list"
+            allow_add: true
+            default: ["news"]
   
   # - label: 'Blog'
   #   name: 'blog'

@@ -51,7 +51,8 @@ export default {
       },
       {
         name: "twitter:card",
-        content: siteData.description
+        content: "summary"
+        // content: siteData.description
       },
     ],
     link: [{

@@ -35,6 +35,12 @@ export default (meta, siteData) => {
       content: (meta && meta.mainImage) || mainImage,
     },
     {
+      hid: "twitter:card",
+      name: "twitter:card",
+      content: "summary_large_image"
+      // content: siteData.description
+    },
+    {
       hid: "twitter:url",
       name: "twitter:url",
       content: (meta && meta.url) || url,
@@ -54,11 +60,5 @@ export default (meta, siteData) => {
       name: "twitter:image",
       content: (meta && meta.mainImage) || mainImage,
     },
-    // {
-    //   hid: "twitter:card",
-    //   name: "twitter:card",
-    //   content: "summary_large_image"
-    //   // content: siteData.description
-    // },
   ];
 };

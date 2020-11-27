@@ -12,7 +12,7 @@ export default {
   },
   head: {
     htmlAttrs: {
-      lang: "en-US",
+      lang: siteData.lang || "en-us",
     },
     //   titleTemplate: '%s - ' + siteData.name,
     title: siteData.name,
@@ -76,52 +76,52 @@ export default {
   buildModules: ['@nuxtjs/vuetify', 'nuxt-purgecss'],
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
+    // '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     '@nuxtjs/auth',
-    ['nuxt-twa-module', {
-      // https://github.com/voorhoede/nuxt-twa-module#readme
-      defaultUrl: 'https://nuxt-twa-netlify.netlify.app',
-      hostName: 'nuxt-twa-netlify.netlify.app',
-      sha256Fingerprints: ['/* your SHA-256 keys */'],
-      applicationId: 'com.example.example',
-      launcherName: 'Your app name',
-      versionCode: 1,
-      versionName: '1.0',
-      statusBarColor: 'grey',
-      iconPath: '/static/icon.png',
-      // distFolder: '.nuxt/dist/client',
-    }],
+    // ['nuxt-twa-module', {
+    //   // https://github.com/voorhoede/nuxt-twa-module#readme
+    //   defaultUrl: 'https://nuxt-twa-netlify.netlify.app',
+    //   hostName: 'nuxt-twa-netlify.netlify.app',
+    //   sha256Fingerprints: ['/* your SHA-256 keys */'],
+    //   applicationId: 'com.example.example',
+    //   launcherName: 'Your app name',
+    //   versionCode: 1,
+    //   versionName: '1.0',
+    //   statusBarColor: 'grey',
+    //   iconPath: '/static/icon.png',
+    //   // distFolder: '.nuxt/dist/client',
+    // }],
   ],
-  pwa: {
-    meta: {},
-    workbox: {
-      cleanupOutdatedCaches: true,
-      runtimeCaching: [{
-        urlPattern: 'https://fonts.googleapis.com/.*',
-        // handler: 'cacheFirst',
-        cacheableResponse: {
-          statuses: [0, 200]
-        }
-      }, {
-        urlPattern: 'https://cdn.jsdelivr.net/.*',
-        // handler: 'cacheFirst',
-        cacheableResponse: {
-          statuses: [0, 200]
-        }
-      }]
-    },
-    manifest: {
-      short_name: process.env.npm_package_title,
-      name: process.env.npm_package_title,
-      start_url: '/',
-      background_color: 'grey',
-      display: 'standalone',
-      lang: 'en',
-      theme_color: 'black',
-      nativeUi: true
-    },
-  },
+  // pwa: {
+  //   meta: {},
+  //   workbox: {
+  //     cleanupOutdatedCaches: true,
+  //     runtimeCaching: [{
+  //       urlPattern: 'https://fonts.googleapis.com/.*',
+  //       // handler: 'cacheFirst',
+  //       cacheableResponse: {
+  //         statuses: [0, 200]
+  //       }
+  //     }, {
+  //       urlPattern: 'https://cdn.jsdelivr.net/.*',
+  //       // handler: 'cacheFirst',
+  //       cacheableResponse: {
+  //         statuses: [0, 200]
+  //       }
+  //     }]
+  //   },
+  //   manifest: {
+  //     short_name: process.env.npm_package_title,
+  //     name: process.env.npm_package_title,
+  //     start_url: '/',
+  //     background_color: 'grey',
+  //     display: 'standalone',
+  //     lang: siteData.lang || "en-us",
+  //     theme_color: 'black',
+  //     nativeUi: true
+  //   },
+  // },
   auth: {
     strategies: {
       local: {

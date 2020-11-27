@@ -1,6 +1,6 @@
 {
   "name": "Nuxt Netlify Supercharged Boilderplate",
-  "description": "Features include: nuxt, netlify identity, netlify cms, pwa, twa, and nuxt content; including seo meta in head, and a flat-file site settings.",
+  "description": "Features include nuxt netlify identity netlify cms pwa twa nuxt content seo meta in head flat-file site settings",
   "lang": "en-US",
   "url": "https://nuxt-twa-netlify.netlify.app",
   "networks": [

@@ -30,6 +30,11 @@ export default {
         content: "width=device-width, initial-scale=1"
       },
       {
+        name: "twitter:card",
+        // content: "summary",
+        content: "summary_large_image"
+      },
+      {
         property: "og:site_name",
         content: siteData.name
       },
@@ -37,11 +42,6 @@ export default {
         hid: "description",
         name: "description",
         content: siteData.description,
-      },
-      {
-        name: "twitter:card",
-        content: "summary",
-        // content: "summary_large_image"
       },
       {
         property: "og:image:width",

@@ -63,7 +63,7 @@ export default {
       {
         hid: "canonical",
         rel: "canonical",
-        href: process.env.BASE_URL,
+        href: siteData.url // process.env.BASE_URL,
       },
     ]
   },

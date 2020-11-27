@@ -30,7 +30,7 @@ export default {
         content: "width=device-width, initial-scale=1"
       },
       {
-        name: "twitter:card",
+        property: "twitter:card",
         // content: "summary",
         content: "summary_large_image"
       },

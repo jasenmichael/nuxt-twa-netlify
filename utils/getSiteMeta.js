@@ -1,7 +1,9 @@
+const siteData = require('./assets/content/site/sitedata.json')
+
 const type = "website";
-const url = "https://bobross.com";
-const title = "My Amazing Blog on The Joy of Painting";
-const description = "Articles focused on the beautiful art of landscape painting.";
+const url = siteData.url;
+const title = siteData.name
+const description = siteData.description
 const mainImage = "/v.png";
 
 export default (meta) => {

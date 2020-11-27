@@ -49,11 +49,11 @@ export default {
         name: "twitter:site",
         content: "@" + siteData.networks.filter(network => network.name === "Twitter")[0].handle.replace('@@', '@')
       },
-      {
-        name: "twitter:card",
-        content: "summary"
-        // content: siteData.description
-      },
+      // {
+      //   name: "twitter:card",
+      //   content: "summary"
+      //   // content: siteData.description
+      // },
     ],
     link: [{
         rel: "icon",

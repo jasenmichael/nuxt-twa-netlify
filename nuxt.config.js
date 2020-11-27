@@ -54,6 +54,7 @@ export default {
       //   content: "summary"
       //   // content: siteData.description
       // },
+      
     ],
     link: [{
         rel: "icon",

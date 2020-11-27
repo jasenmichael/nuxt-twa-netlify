@@ -1,4 +1,4 @@
-const siteData = require('./assets/content/site/sitedata.json')
+const siteData = require('../assets/content/site/sitedata.json')
 
 const type = "website";
 const url = siteData.url;

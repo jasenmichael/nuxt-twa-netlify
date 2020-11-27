@@ -54,11 +54,11 @@ export default (meta, siteData) => {
       name: "twitter:image",
       content: (meta && meta.mainImage) || mainImage,
     },
-    {
-      hid: "twitter:card",
-      name: "twitter:card",
-      content: "summary_large_image"
-      // content: siteData.description
-    },
+    // {
+    //   hid: "twitter:card",
+    //   name: "twitter:card",
+    //   content: "summary_large_image"
+    //   // content: siteData.description
+    // },
   ];
 };

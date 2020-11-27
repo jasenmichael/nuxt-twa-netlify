@@ -42,22 +42,22 @@ export default (meta, siteData) => {
     // },
     {
       hid: "twitter:url",
-      name: "twitter:url",
+      property: "twitter:url",
       content: (meta && meta.url) || url,
     },
     {
       hid: "twitter:title",
-      name: "twitter:title",
+      property: "twitter:title",
       content: (meta && meta.title) || title,
     },
     {
       hid: "twitter:description",
-      name: "twitter:description",
+      property: "twitter:description",
       content: (meta && meta.description) || description,
     },
     {
       hid: "twitter:image",
-      name: "twitter:image",
+      property: "twitter:image",
       content: (meta && meta.mainImage) || mainImage,
     },
   ];

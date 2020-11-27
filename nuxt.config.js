@@ -1,7 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
 const siteData = require('./assets/content/site/sitedata.json')
+
 import getSiteMeta from "./utils/getSiteMeta"
-const meta = getSiteMeta()
+const meta = getSiteMeta(null, siteData)
 
 export default {
   target: 'static',

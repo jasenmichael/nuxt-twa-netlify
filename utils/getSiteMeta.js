@@ -1,12 +1,12 @@
-const siteData = require('../assets/content/site/sitedata.json')
+// const siteData = require('../assets/content/site/sitedata.json')
 
-const type = "website";
-const url = siteData.url;
-const title = siteData.name
-const description = siteData.description
-const mainImage = "/v.png";
 
-export default (meta) => {
+export default (meta, siteData) => {
+  const type = "website";
+  const url = siteData.url;
+  const title = siteData.name
+  const description = siteData.description
+  const mainImage = "/v.png";
   return [{
       hid: "description",
       name: "description",

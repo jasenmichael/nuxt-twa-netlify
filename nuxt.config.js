@@ -1,4 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
+const siteData = require('./assets/content/site/sitedata.json')
+import getSiteMeta from "./utils/getSiteMeta"
+const meta = getSiteMeta()
 
 export default {
   target: 'static',
@@ -7,56 +10,95 @@ export default {
     host: '0.0.0.0'
   },
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
-    meta: [{
-        charset: 'utf-8'
+    htmlAttrs: {
+      lang: "en-US",
+    },
+    title: siteData.name,
+    meta: [
+      ...meta,
+      {
+        charset: "utf-8"
       },
       {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
+        name: "HandheldFriendly",
+        content: "True"
       },
       {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        name: "viewport",
+        content: "width=device-width, initial-scale=1"
+      },
+      {
+        property: "og:site_name",
+        content: siteData.name
+      },
+      {
+        hid: "description",
+        name: "description",
+        content: siteData.description,
+      },
+      {
+        property: "og:image:width",
+        content: "740"
+      },
+      {
+        property: "og:image:height",
+        content: "300"
+      },
+      {
+        name: "twitter:site",
+        content: "@" + siteData.networks.filter(network => network.name === "Twitter")[0].handle.replace('@@', '@')
+      },
+      {
+        name: "twitter:card",
+        content: siteData.description
+      },
     ],
     link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    }]
+        rel: "icon",
+        type: "image/x-icon",
+        href: siteData.favicon || '/favicon.ico'
+      },
+      {
+        hid: "canonical",
+        rel: "canonical",
+        href: process.env.BASE_URL,
+      },
+    ]
   },
-
+  // head: {
+  //   titleTemplate: '%s - ' + siteData.name,
+  //   title: process.env.npm_package_name || '',
+  //   meta: [{
+  //       charset: 'utf-8'
+  //     },
+  //     {
+  //       name: 'viewport',
+  //       content: 'width=device-width, initial-scale=1'
+  //     },
+  //     {
+  //       hid: 'description',
+  //       name: 'description',
+  //       content: process.env.npm_package_description || ''
+  //     }
+  //   ],
+  //   link: [{
+  //     rel: 'icon',
+  //     type: 'image/x-icon',
+  //     href: '/favicon.ico'
+  //   }]
+  // },
   loading: {
     color: '#fff'
   },
-
   css: [],
-
   plugins: [],
-
-  buildModules: [
-    '@nuxtjs/vuetify',
-    'nuxt-purgecss',
-    // '@nuxtjs/google-fonts'
-
-  ],
-  // purgeCSS: {
-  //   enabled: ({
-  //     isDev,
-  //     isClient
-  //   }) => (!isDev && isClient), // or `false` when in dev/debug mode
-  // },
-
+  buildModules: ['@nuxtjs/vuetify', 'nuxt-purgecss'],
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     '@nuxtjs/auth',
     ['nuxt-twa-module', {
-      /* module options */
       // https://github.com/voorhoede/nuxt-twa-module#readme
       defaultUrl: 'https://nuxt-twa-netlify.netlify.app',
       hostName: 'nuxt-twa-netlify.netlify.app',
@@ -67,18 +109,11 @@ export default {
       versionName: '1.0',
       statusBarColor: 'grey',
       iconPath: '/static/icon.png',
-      distFolder: '.nuxt/dist/client',
+      // distFolder: '.nuxt/dist/client',
     }],
   ],
-
-  // pwa config
   pwa: {
-    meta: {
-      /* meta options */
-    },
-    // manifest: {
-    //   display: 'standalone'
-    // },
+    meta: {},
     workbox: {
       cleanupOutdatedCaches: true,
       runtimeCaching: [{
@@ -106,8 +141,6 @@ export default {
       nativeUi: true
     },
   },
-
-  //auth
   auth: {
     strategies: {
       local: {
@@ -143,10 +176,6 @@ export default {
   },
   purgeCSS: {
     mode: 'postcss',
-    // enabled: ({
-    //   isDev,
-    //   isClient
-    // }) => (!isDev && isClient),
     whitelist: [
       'container',
       'row',
@@ -176,11 +205,6 @@ export default {
     ]
   },
   build: {
-    // extractCss: ({
-    //   isDev,
-    //   isClient
-    // }) => (!isDev && isClient), // or `false` when in dev/debug mode
-
     extend(config, ctx) {}
   }
 }

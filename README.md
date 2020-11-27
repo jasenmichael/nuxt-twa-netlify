@@ -2,25 +2,7 @@
 
 > nuxt pwa twa netlify identity and netlifycms
 
-## Build Setup
-
-```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-
+features: nuxt, pwa, twa, netlify identity, netlify cms
 
 ----
 steps:
@@ -40,3 +22,28 @@ steps:
 - [ ] lighthouse test
 - [ ] install netlifycms
 - [ ] create site data
+- [ ] add netlify-cms-proxy-server
+
+
+env
+ - domain/url
+
+collections
+- site data
+  - url ✔️
+  - name ✔️
+  - description
+  - keywords
+  - language
+  - summary
+  
+- social links
+  - label: Facebook
+  - title: facebook
+  - url
+  - at
+  - image
+- blog
+- photos
+- articles
+- pages

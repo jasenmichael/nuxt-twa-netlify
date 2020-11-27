@@ -94,6 +94,3 @@ sw.*
 
 # twa android build folder
 android/
-
-
-!assets/content

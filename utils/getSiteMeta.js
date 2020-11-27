@@ -34,12 +34,12 @@ export default (meta, siteData) => {
       property: "og:image",
       content: (meta && meta.mainImage) || mainImage,
     },
-    {
-      hid: "twitter:card",
-      name: "twitter:card",
-      content: "summary_large_image"
-      // content: "summary"
-    },
+    // {
+    //   hid: "twitter:card",
+    //   name: "twitter:card",
+    //   content: "summary_large_image"
+    //   // content: "summary"
+    // },
     {
       hid: "twitter:url",
       name: "twitter:url",

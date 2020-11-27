@@ -16,5 +16,6 @@
       "icon": "/img/facebook.png",
       "handle": "nuxt"
     }
-  ]
+  ],
+  "favicon": "/favicon.ico"
 }

@@ -8,13 +8,13 @@
       "name": "Twitter",
       "url": "https://nuxt.org",
       "icon": "/img/twitter.png",
-      "handle": "nuxt"
+      "handle": "jasen_michael"
     },
     {
       "name": "Facebook",
       "url": "https://nuxt.org",
       "icon": "/img/facebook.png",
-      "handle": "nuxt"
+      "handle": "michael.jasen"
     }
   ],
   "favicon": "/favicon.ico",

@@ -10,6 +10,32 @@ export default (meta, siteData) => {
       content: (meta && meta.description) || description,
     },
     {
+      hid: "twitter:card",
+      name: "twitter:card",
+      content: "summary_large_image"
+      // content: "summary"
+    },
+    {
+      hid: "twitter:url",
+      property: "twitter:url",
+      content: (meta && meta.url) || url,
+    },
+    {
+      hid: "twitter:title",
+      property: "twitter:title",
+      content: (meta && meta.title) || title,
+    },
+    {
+      hid: "twitter:description",
+      property: "twitter:description",
+      content: (meta && meta.description) || description,
+    },
+    {
+      hid: "twitter:image",
+      property: "twitter:image",
+      content: (meta && meta.mainImage) || mainImage,
+    },
+    {
       hid: "og:type",
       property: "og:type",
       content: (meta && meta.type) || type,
@@ -32,32 +58,6 @@ export default (meta, siteData) => {
     {
       hid: "og:image",
       property: "og:image",
-      content: (meta && meta.mainImage) || mainImage,
-    },
-    // {
-    //   hid: "twitter:card",
-    //   name: "twitter:card",
-    //   content: "summary_large_image"
-    //   // content: "summary"
-    // },
-    {
-      hid: "twitter:url",
-      property: "twitter:url",
-      content: (meta && meta.url) || url,
-    },
-    {
-      hid: "twitter:title",
-      property: "twitter:title",
-      content: (meta && meta.title) || title,
-    },
-    {
-      hid: "twitter:description",
-      property: "twitter:description",
-      content: (meta && meta.description) || description,
-    },
-    {
-      hid: "twitter:image",
-      property: "twitter:image",
       content: (meta && meta.mainImage) || mainImage,
     },
   ];

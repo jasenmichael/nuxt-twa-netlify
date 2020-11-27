@@ -30,19 +30,14 @@ export default {
         content: "width=device-width, initial-scale=1"
       },
       {
-        property: "twitter:card",
-        // content: "summary",
-        content: "summary_large_image"
-      },
-      {
-        property: "og:site_name",
-        content: siteData.name
-      },
-      {
         hid: "description",
         name: "description",
         content: siteData.description,
       },
+      // {
+      //   property: "og:site_name",
+      //   content: siteData.name
+      // },
       {
         property: "og:image:width",
         content: "740"
@@ -51,6 +46,11 @@ export default {
         property: "og:image:height",
         content: "300"
       },
+      // {
+      //   property: "twitter:card",
+      //   // content: "summary",
+      //   content: "summary_large_image"
+      // },
       {
         property: "twitter:site",
         content: "@" + siteData.networks.filter(network => network.name === "Twitter")[0].handle.replace('@@', '@')

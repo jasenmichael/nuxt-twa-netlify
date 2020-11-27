@@ -39,6 +39,11 @@ export default {
         content: siteData.description,
       },
       {
+        name: "twitter:card",
+        content: "summary",
+        // content: "summary_large_image"
+      },
+      {
         property: "og:image:width",
         content: "740"
       },
@@ -49,12 +54,7 @@ export default {
       {
         name: "twitter:site",
         content: "@" + siteData.networks.filter(network => network.name === "Twitter")[0].handle.replace('@@', '@')
-      },
-      {
-        name: "twitter:card",
-        content: "summary",
-        // content: "summary_large_image"
-      },
+      }
     ],
     link: [{
         rel: "icon",

@@ -38,14 +38,14 @@ export default {
         name: "description",
         content: siteData.description,
       },
-      // {
-      //   property: "og:image:width",
-      //   content: "740"
-      // },
-      // {
-      //   property: "og:image:height",
-      //   content: "300"
-      // },
+      {
+        property: "og:image:width",
+        content: "740"
+      },
+      {
+        property: "og:image:height",
+        content: "300"
+      },
       {
         name: "twitter:site",
         content: "@" + siteData.networks.filter(network => network.name === "Twitter")[0].handle.replace('@@', '@')

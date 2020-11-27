@@ -1,6 +1,3 @@
-// const siteData = require('../assets/content/site/sitedata.json')
-
-
 export default (meta, siteData) => {
   const type = "website";
   const url = siteData.url;

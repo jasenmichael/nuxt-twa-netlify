@@ -2,7 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 const siteData = require('./assets/content/site/sitedata.json')
 
 import getSiteMeta from "./utils/getSiteMeta"
-const meta = getSiteMeta(null, siteData)
+const meta = getSiteMeta(siteData)
 
 export default {
   target: 'static',
@@ -52,7 +52,7 @@ export default {
       //   content: "summary_large_image"
       // },
       {
-        name: "twitter:site",
+        property: "twitter:site",
         content: "@" + siteData.networks.filter(network => network.name === "Twitter")[0].handle.replace('@@', '@')
       }
     ],

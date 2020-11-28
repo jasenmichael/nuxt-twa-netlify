@@ -1,4 +1,4 @@
-export default (meta, siteData) => {
+export default (siteData, meta) => {
   const type = "website";
   const url = siteData.url;
   const title = siteData.name
@@ -11,28 +11,28 @@ export default (meta, siteData) => {
     },
     {
       //   hid: "twitter:card",
-      name: "twitter:card",
+      property: "twitter:card",
       content: "summary_large_image"
       // content: "summary"
     },
     {
       //   hid: "twitter:url",
-      name: "twitter:url",
+      property: "twitter:url",
       content: (meta && meta.url) || url,
     },
     {
       //   hid: "twitter:title",
-      name: "twitter:title",
+      property: "twitter:title",
       content: (meta && meta.title) || title,
     },
     {
       //   hid: "twitter:description",
-      name: "twitter:description",
+      property: "twitter:description",
       content: (meta && meta.description) || description,
     },
     {
       //   hid: "twitter:image",
-      name: "twitter:image",
+      property: "twitter:image",
       content: (meta && meta.mainImage) ? url + meta.mainImage : url + mainImage,
     },
     // {

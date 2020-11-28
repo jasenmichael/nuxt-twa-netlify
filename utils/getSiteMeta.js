@@ -3,7 +3,7 @@ export default (meta, siteData) => {
   const url = siteData.url;
   const title = siteData.name
   const description = siteData.description
-  const mainImage = url + "/v.png";
+  const mainImage = "/v.png"
   return [{
       hid: "description",
       name: "description",
@@ -11,7 +11,7 @@ export default (meta, siteData) => {
     },
     {
       hid: "twitter:card",
-      name: "twitter:card",
+      property: "twitter:card",
       content: "summary_large_image"
       // content: "summary"
     },
@@ -35,30 +35,30 @@ export default (meta, siteData) => {
       property: "twitter:image",
       content: (meta && meta.mainImage) || mainImage,
     },
-    // {
-    //   hid: "og:type",
-    //   property: "og:type",
-    //   content: (meta && meta.type) || type,
-    // },
+    {
+      hid: "og:type",
+      property: "og:type",
+      content: type,
+    },
     {
       hid: "og:url",
       property: "og:url",
       content: (meta && meta.url) || url,
     },
-    // {
-    //   hid: "og:title",
-    //   property: "og:title",
-    //   content: (meta && meta.title) || title,
-    // },
-    // {
-    //   hid: "og:description",
-    //   property: "og:description",
-    //   content: (meta && meta.description) || description,
-    // },
-    // {
-    //   hid: "og:image",
-    //   property: "og:image",
-    //   content: (meta && meta.mainImage) || mainImage,
-    // },
+    {
+      hid: "og:title",
+      property: "og:title",
+      content: (meta && meta.title) || title,
+    },
+    {
+      hid: "og:description",
+      property: "og:description",
+      content: (meta && meta.description) || description,
+    },
+    {
+      hid: "og:image",
+      property: "og:image",
+      content: (meta && meta.mainImage) || mainImage,
+    },
   ];
 };

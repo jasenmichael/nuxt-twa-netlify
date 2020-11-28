@@ -1,8 +1,16 @@
-# nuxt-twa-netlify
+# Nuxt Supercharged Boilerplate
 
 > nuxt pwa twa netlify identity and netlifycms
 
-features: nuxt, pwa, twa, netlify identity, netlify cms
+Features: 
+- Nuxt.js
+- Progressive Web App (PWA)
+- Trusted Web Application (TWA)
+- Authentication with Netlify Identity
+- Content Management System with NetlifyCms
+- Flat-file site settings (editable through NetlifyCms)
+
+
 
 ----
 steps:

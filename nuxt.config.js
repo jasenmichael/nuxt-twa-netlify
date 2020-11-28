@@ -71,6 +71,12 @@ export default {
   loading: {
     color: '#fff'
   },
+  router: {
+    // middleware: ['routing']
+  },
+  generate: {
+    fallback: true
+  },
   css: [],
   plugins: [],
   buildModules: ['@nuxtjs/vuetify', 'nuxt-purgecss'],

@@ -5,58 +5,58 @@ export default (meta, siteData) => {
   const description = siteData.description
   const mainImage = "/v.png"
   return [{
-      hid: "description",
+    //   hid: "description",
       name: "description",
       content: (meta && meta.description) || description,
     },
     {
-      hid: "twitter:card",
+    //   hid: "twitter:card",
       name: "twitter:card",
       content: "summary_large_image"
       // content: "summary"
     },
     {
-      hid: "twitter:url",
+    //   hid: "twitter:url",
       name: "twitter:url",
       content: (meta && meta.url) || url,
     },
     {
-      hid: "twitter:title",
+    //   hid: "twitter:title",
       name: "twitter:title",
       content: (meta && meta.title) || title,
     },
     {
-      hid: "twitter:description",
+    //   hid: "twitter:description",
       name: "twitter:description",
       content: (meta && meta.description) || description,
     },
     {
-      hid: "twitter:image",
+    //   hid: "twitter:image",
       name: "twitter:image",
       content: (meta && meta.mainImage) ? url + meta.mainImage : url + mainImage,
     },
     {
-      hid: "og:type",
+    //   hid: "og:type",
       property: "og:type",
       content: type,
     },
     {
-      hid: "og:url",
+    //   hid: "og:url",
       property: "og:url",
       content: (meta && meta.url) || url,
     },
     {
-      hid: "og:title",
+    //   hid: "og:title",
       property: "og:title",
       content: (meta && meta.title) || title,
     },
     {
-      hid: "og:description",
+    //   hid: "og:description",
       property: "og:description",
       content: (meta && meta.description) || description,
     },
     {
-      hid: "og:image",
+    //   hid: "og:image",
       property: "og:image",
       content: (meta && meta.mainImage) || mainImage,
     },

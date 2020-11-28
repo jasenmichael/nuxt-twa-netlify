@@ -30,7 +30,7 @@ export default {
         content: "width=device-width, initial-scale=1"
       },
       {
-        hid: "description",
+        // hid: "description",
         name: "description",
         content: siteData.description,
       },

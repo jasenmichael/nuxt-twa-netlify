@@ -11,28 +11,28 @@ export default (meta, siteData) => {
     },
     {
       hid: "twitter:card",
-      property: "twitter:card",
+      name: "twitter:card",
       content: "summary_large_image"
       // content: "summary"
     },
     {
       hid: "twitter:url",
-      property: "twitter:url",
+      name: "twitter:url",
       content: (meta && meta.url) || url,
     },
     {
       hid: "twitter:title",
-      property: "twitter:title",
+      name: "twitter:title",
       content: (meta && meta.title) || title,
     },
     {
       hid: "twitter:description",
-      property: "twitter:description",
+      name: "twitter:description",
       content: (meta && meta.description) || description,
     },
     {
       hid: "twitter:image",
-      property: "twitter:image",
+      name: "twitter:image",
       content: (meta && meta.mainImage) || mainImage,
     },
     {

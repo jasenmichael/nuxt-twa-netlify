@@ -52,7 +52,7 @@ export default {
       //   content: "summary_large_image"
       // },
       {
-        property: "twitter:site",
+        name: "twitter:site",
         content: "@" + siteData.networks.filter(network => network.name === "Twitter")[0].handle.replace('@@', '@')
       }
     ],

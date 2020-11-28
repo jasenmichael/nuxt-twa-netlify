@@ -33,7 +33,7 @@ export default (meta, siteData) => {
     {
     //   hid: "twitter:image",
       name: "twitter:image",
-      content: (meta && meta.mainImage) ? url + meta.mainImage : url + mainImage,
+      content: (meta && meta.mainImage) ? siteData.url + meta.mainImage : siteData.url + mainImage,
     },
     {
     //   hid: "og:type",

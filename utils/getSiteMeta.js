@@ -3,7 +3,7 @@ export default (meta, siteData) => {
   const url = siteData.url;
   const title = siteData.name
   const description = siteData.description
-  const mainImage = "/v.png"
+  const mainImage = "/yo.png"
   return [{
     //   hid: "description",
       name: "description",

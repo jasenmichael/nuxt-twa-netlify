@@ -38,14 +38,14 @@ export default {
       //   property: "og:site_name",
       //   content: siteData.name
       // },
-      {
-        property: "og:image:width",
-        content: "740"
-      },
-      {
-        property: "og:image:height",
-        content: "300"
-      },
+      // {
+      //   property: "og:image:width",
+      //   content: "740"
+      // },
+      // {
+      //   property: "og:image:height",
+      //   content: "300"
+      // },
       // {
       //   property: "twitter:card",
       //   // content: "summary",

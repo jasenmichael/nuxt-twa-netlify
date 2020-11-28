@@ -35,30 +35,30 @@ export default (meta, siteData) => {
       property: "twitter:image",
       content: (meta && meta.mainImage) || mainImage,
     },
-    {
-      hid: "og:type",
-      property: "og:type",
-      content: (meta && meta.type) || type,
-    },
+    // {
+    //   hid: "og:type",
+    //   property: "og:type",
+    //   content: (meta && meta.type) || type,
+    // },
     {
       hid: "og:url",
       property: "og:url",
       content: (meta && meta.url) || url,
     },
-    {
-      hid: "og:title",
-      property: "og:title",
-      content: (meta && meta.title) || title,
-    },
-    {
-      hid: "og:description",
-      property: "og:description",
-      content: (meta && meta.description) || description,
-    },
-    {
-      hid: "og:image",
-      property: "og:image",
-      content: (meta && meta.mainImage) || mainImage,
-    },
+    // {
+    //   hid: "og:title",
+    //   property: "og:title",
+    //   content: (meta && meta.title) || title,
+    // },
+    // {
+    //   hid: "og:description",
+    //   property: "og:description",
+    //   content: (meta && meta.description) || description,
+    // },
+    // {
+    //   hid: "og:image",
+    //   property: "og:image",
+    //   content: (meta && meta.mainImage) || mainImage,
+    // },
   ];
 };

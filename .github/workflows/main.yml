@@ -32,6 +32,5 @@ jobs:
         # Include all JS files from the `dist` directory
           file-path: |
               dist/*
-              content/*
-          commit-msg: Update resources
+          commit-msg: Github action push dist/
           github-token: ${{ secrets.GITHUB_TOKEN }}

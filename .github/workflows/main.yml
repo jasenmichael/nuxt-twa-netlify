@@ -29,8 +29,9 @@ jobs:
             ${{ runner.os }}-node-
       
       - name: npm install, build
-      - run: npm ci
-        run: npm run generate
+        run: npm ci
+      
+      - run: npm run generate
 
         # env:
         #   CI: true

@@ -5,7 +5,7 @@
 Features: 
 - Nuxt.js
 - Progressive Web App (PWA)
-- Trusted Web Application (TWA)
+- Trusted Web Application (TWA) 
 - Authentication with Netlify Identity
 - Content Management System with NetlifyCms
 - Flat-file site settings (editable through NetlifyCms)

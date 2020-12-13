@@ -1,26 +1,20 @@
 <template>
   <v-app dark>
     <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
+      {{ pageNotFound || '' }}
     </h1>
     <h1 v-else>
-      {{ otherError }}
+      {{ otherError || '' }}
     </h1>
     <NuxtLink to="/"> Home page </NuxtLink>
-    <pre>{{ error }}</pre>
+    <!-- <pre>{{ $nuxt.$route.path }}</pre>
+    <pre>{{ error }}</pre> -->
   </v-app>
 </template>
 
 <script>
 export default {
   layout: 'empty',
-  middleware({ store, redirect }) {
-    // If the user is not authenticated
-    console.log('middle')
-    // if (!store.state.authenticated) {
-    //   return redirect('/login')
-    // }
-  },
   props: {
     error: {
       type: Object,
@@ -29,9 +23,27 @@ export default {
   },
   data() {
     return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred',
+      pageNotFound: null,
+      otherError: null,
     }
+  },
+  beforeCreate() {
+    let pathsToRedirect = [
+      'photos',
+      'articles',
+      'blog',
+      'music',
+      'events',
+      'videos',
+    ]
+    let path = this.$nuxt.$route.path.split('/')
+    if (pathsToRedirect.includes(path[1]) && path[2]) {
+      this.$router.push('/' + path[1] + '?q=' + path[2])
+    }
+  },
+  created() {
+    this.pageNotFound = '404 Not Found'
+    this.otherError = 'An error occurred'
   },
   head() {
     const title =
